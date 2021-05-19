@@ -1,0 +1,27 @@
+package com.thewyp.imagesearch.ui.gallery
+
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.thewyp.imagesearch.data.UnsplashPhoto
+import com.thewyp.imagesearch.data.UnsplashRepository
+
+class GalleryViewModel @ViewModelInject constructor(private val repository: UnsplashRepository) :
+    ViewModel() {
+
+    private val currentQuery = MutableLiveData(DEFAULT_QUERY)
+
+    val photos = currentQuery.switchMap { it ->
+        repository.searchPhotos(it).cachedIn(viewModelScope)
+    }
+
+    fun searchPhotos(query: String) {
+        currentQuery.value = query
+    }
+
+    companion object {
+        private const val DEFAULT_QUERY = "cats"
+    }
+
+}
