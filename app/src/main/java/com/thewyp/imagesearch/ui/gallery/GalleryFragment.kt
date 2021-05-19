@@ -19,6 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class GalleryFragment : Fragment(
     R.layout.fragment_gallery
 ),UnsplashPhotoAdapter.OnItemClickListener  {
+
     private val viewModel by viewModels<GalleryViewModel>()
 
     private var _binding: FragmentGalleryBinding? = null

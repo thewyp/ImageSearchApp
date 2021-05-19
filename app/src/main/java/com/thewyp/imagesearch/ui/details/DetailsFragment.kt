@@ -12,12 +12,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.thewyp.imagesearch.R
 import com.thewyp.imagesearch.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
-    private val args:DetailsFragmentArgs by navArgs<>()
+    private val args by navArgs<DetailsFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,6 +54,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                         textViewDescription.isVisible = photo.description != null
                         return false
                     }
+
                 })
                 .into(imageView)
 
